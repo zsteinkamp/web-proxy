@@ -1,11 +1,15 @@
 #!/bin/bash
 
+###
+# FROM https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
+###
+
 if ! [ -x "$(command -v docker)" ]; then
   echo 'Error: docker is not installed.' >&2
   exit 1
 fi
 
-domains=(steinkamp.us home.steinkamp.us)
+domains=(steinkamp.us photos.steinkamp.us)
 rsa_key_size=4096
 data_path="./certbot"
 email="zack@steinkamp.us" # Adding a valid address is strongly recommended
