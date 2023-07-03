@@ -1,5 +1,6 @@
 # web-proxy
-Bootstrap an SSL-enabled nginx server, backed by Let's Encrypt.
+Bootstrap an SSL-enabled nginx server, backed by Let's Encrypt and enabled by
+[njs-acme](https://github.com/nginxinc/njs-acme).
 
 ## Usage
-Run `./init-letsencrypt.sh`, then run `docker compose up -d`.
+Run `docker compose up -d`.
