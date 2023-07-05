@@ -19,3 +19,6 @@ services:
       start_period: 10s
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - njs_acme:/etc/nginx/njs-acme
+volumes:
+  njs_acme:
