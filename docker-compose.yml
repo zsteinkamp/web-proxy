@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx:
-    image: nginx-njs-acme
+    image: nginxinc/nginx-njs-acme
     restart: unless-stopped
     ports:
       - "80:80"
