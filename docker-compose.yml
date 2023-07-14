@@ -19,6 +19,7 @@ services:
       start_period: 10s
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./dropbox:/usr/share/nginx/html/dropbox
       - njs_acme:/etc/nginx/njs-acme
 volumes:
   njs_acme:
