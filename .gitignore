@@ -1,1 +1,4 @@
 dropbox/
+.env
+nginx-repo.crt
+nginx-repo.key
