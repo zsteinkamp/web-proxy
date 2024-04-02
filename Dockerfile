@@ -4,8 +4,8 @@ user root
 RUN mkdir -p /usr/lib/nginx/njs_modules/
 RUN curl -L -o /usr/lib/nginx/njs_modules/acme.js https://github.com/nginx/njs-acme/releases/download/v1.0.0/acme.js
 
-COPY nginx-repo.crt .
-COPY nginx-repo.key .
+COPY nginx-repo.crt /etc/ssl/nginx/nginx-repo.crt
+COPY nginx-repo.key /etc/ssl/nginx/nginx-repo.key
 
 RUN apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -y ca-certificates gnupg2 lsb-release \
@@ -31,9 +31,6 @@ RUN apt-get update \
     && echo "Acquire::https::pkgs.nginx.com::SslCert     \"/etc/ssl/nginx/nginx-repo.crt\";" >> /etc/apt/apt.conf.d/90nginx \
     && echo "Acquire::https::pkgs.nginx.com::SslKey      \"/etc/ssl/nginx/nginx-repo.key\";" >> /etc/apt/apt.conf.d/90nginx \
     && echo "deb [signed-by=$NGINX_GPGKEY_PATH] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" > /etc/apt/sources.list.d/nginx-plus.list \
-    && mkdir -p /etc/ssl/nginx \
-    && cat nginx-repo.crt > /etc/ssl/nginx/nginx-repo.crt \
-    && cat nginx-repo.key > /etc/ssl/nginx/nginx-repo.key \
     && apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -y $nginxPackages curl gettext-base \
     && apt-get remove --purge -y lsb-release \
