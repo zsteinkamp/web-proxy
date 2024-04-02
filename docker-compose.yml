@@ -11,6 +11,7 @@ services:
       - NJS_ACME_SERVER_NAMES=steinkamp.us home.steinkamp.us musics.steinkamp.us photos.steinkamp.us esstraba.steinkamp.us ships.steinkamp.us
       - NJS_ACME_DIRECTORY_URI=https://acme-v02.api.letsencrypt.org/directory
       - NJS_ACME_ACCOUNT_EMAIL=zack@steinkamp.us
+      - NMS_SERVER_TOKEN=${NMS_SERVER_TOKEN}
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./nginx-agent.conf:/etc/nginx-agent/nginx-agent.conf
