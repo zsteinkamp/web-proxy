@@ -1,12 +1,18 @@
 FROM private-registry-test.nginx.com/nginx-plus/rootless-agent:nginx-plus 
 
+# Required to create directory and run shell commands below
 user root
+
+# Install njs-acme javascript
 RUN mkdir -p /usr/lib/nginx/njs_modules/
+RUN chown nginx: /usr/lib/nginx/njs_modules/
 RUN curl -L -o /usr/lib/nginx/njs_modules/acme.js https://github.com/nginx/njs-acme/releases/download/v1.0.0/acme.js
 
+# NGINX Package repo credentials
 COPY nginx-repo.crt /etc/ssl/nginx/nginx-repo.crt
 COPY nginx-repo.key /etc/ssl/nginx/nginx-repo.key
 
+# Install njs module from package repo
 RUN apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -y ca-certificates gnupg2 lsb-release \
     && \
@@ -37,4 +43,5 @@ RUN apt-get update \
     && apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list \
     && rm -rf /etc/apt/apt.conf.d/90nginx /etc/ssl/nginx
 
+# Don't forget this!
 user nginx
