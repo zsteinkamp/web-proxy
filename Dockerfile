@@ -1,7 +1,7 @@
 FROM private-registry-test.nginx.com/nginx-plus/rootless-agent:nginx-plus 
 
 # Required to create directory and run shell commands below
-user root
+USER root
 
 # Install njs-acme javascript
 RUN mkdir -p /usr/lib/nginx/njs_modules/
@@ -44,4 +44,4 @@ RUN apt-get update \
     && rm -rf /etc/apt/apt.conf.d/90nginx /etc/ssl/nginx
 
 # Don't forget this!
-user nginx
+USER nginx
